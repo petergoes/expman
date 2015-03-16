@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="format-detection" content="telephone=no" />
@@ -15,8 +15,45 @@
 
 		<div layout="column" ng-controller="AppController">
 			<md-toolbar layout="row">
+				<button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
+					<span class="visually-hidden">Menu</span>
+				</button>
 				<h1>ExpMan</h1>
 			</md-toolbar>
+			<div layout="row" flex>
+				<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+
+				</md-sidenav>
+				<div layout="column" flex id="content">
+					
+					<md-content id="overview" layout="column" flex class="md-padding" ng-controller="ItemsController">
+						<md-button id="add-entry" class="md-fab md-primary md-hue-2">
+							<md-icon md-svg-src="img/icons/ic_people_24px.svg"></md-icon>
+						</md-button>
+
+						<md-card>
+							<md-card-content>
+								<h3>Total so far this month</h3>
+								<p>&euro; 39.75</p>
+							</md-card-content>
+						</md-card>
+
+						<md-card>
+							<md-card-content>
+								<h3>Total last month</h3>
+								<p>&euro; 100.00</p>
+							</md-card-content>
+						</md-card>
+
+						<md-card>
+							<md-card-content>
+								<h3>Avarage per month:</h3>
+								<p>&euro; 98.00</p>
+							</md-card-content>
+						</md-card>
+					</md-content>
+				</div>
+			</div>
 		</div>
 
 		<script src="vendor/angular.min.js"></script>
@@ -24,5 +61,7 @@
 		<script src="vendor/angular-aria.min.js"></script>
 
 		<script src="vendor/angular-material.min.js"></script>
+
+		<script src="index.js"></script>		
 	</body>
 </html>
