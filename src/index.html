@@ -12,166 +12,17 @@
 		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
 	<body>
-		<div id="app" ng-controller="App as app">
-			<div id="primary-fab">
-				<div class="fab-container">
-					<md-button class="md-fab md-primary md-hue-2" ng-disabled="true" aria-label="Primary FAB">
-					</md-button>
-				</div>
-			</div>
-
-			<div layout="column">
-				<md-toolbar id="header" layout="row">
-					<button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn">
-						<span class="visually-hidden">Menu</span>
-					</button>
-					<h1>ExpMan</h1>
-				</md-toolbar>
-				<div id="page" layout="row" flex>
-					<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-						<md-toolbar class="md-tall">
-							<span flex></span>
-							<h2 class="md-toolbar-tools md-toolbar-tools-bottom">
-								<span class="md-flex">Menu</span>
-							</h2>
-						</md-toolbar>
-						<md-content>
-							<md-list>
-								<md-item>
-									<md-item-content>
-										<div class="md-tile-content">
-											<md-button class="md-primary" hide-gt-md>
-												Home
-											</md-button>
-										</div>
-									</md-item-content>
-									<md-divider ng-if="!$last"></md-divider>
-								</md-item>
-								<md-item>
-									<md-item-content>
-										<div class="md-tile-content">
-											<md-button class="md-primary" hide-gt-md>
-												This month
-											</md-button>
-										</div>
-									</md-item-content>
-									<md-divider ng-if="!$last"></md-divider>
-								</md-item>
-								<md-item>
-									<md-item-content>
-										<div class="md-tile-content">
-											<md-button class="md-primary" hide-gt-md>
-												Last month
-											</md-button>
-										</div>
-									</md-item-content>
-									<md-divider ng-if="!$last"></md-divider>
-								</md-item>
-								<md-item>
-									<md-item-content>
-										<div class="md-tile-content">
-											<md-button class="md-primary" hide-gt-md>
-												Average
-											</md-button>
-										</div>
-									</md-item-content>
-									<md-divider ng-if="!$last"></md-divider>
-								</md-item>
-							</md-list>
-						</md-content>
-					</md-sidenav>
-					
-					<div layout="column" flex id="content">
-						
-						<div layout="row" ng-controller="NewEntry as newEntry" flex>
-							<md-content layout="column" flex class="md-padding">
-								<md-card>
-									<md-card-content>
-										<md-input-container>
-											<label>Amount</label>
-											<input type="number" required placeholder="0,00" ng-model="newEntry.amount">
-										</md-input-container>
-										<md-input-container>
-											<label>Description</label>
-											<input type="text" placeholder="Description" ng-model="newEntry.description">
-										</md-input-container>
-										<small>
-											Tags:
-											<span ng-repeat="tag in newEntry.tags | filter:checked != true">
-												{{tag.name}}<span ng-if="!$last">,</span>
-											</span>
-										</small>
-										<section id="tags" layout="row" layout-wrap>
-											<md-checkbox 
-												ng-repeat="tag in newEntry.tags | orderBy:'-used'"
-												arial-label="tag.name"
-												ng-model="tag.checked"
-												flex="33"
-												ng-class="{'ng-hide':($index > 2 && newEntry.toggleMoreTags === false)}"
-											>
-												{{tag.name}}
-											</md-checkbox>
-											<md-button ng-click="newEntry.toggleTags()" flex="100">
-												{{newEntry.toggleMoreTags? 'Less' : 'More' }}
-											</md-button>
-										</section>
-									</md-card-content>
-								</md-card>
-							</md-content>
-						</div>
-
-						<md-divider></md-divider>
-						<div layout="row" flex>
-							<md-content layout="column" flex>
-								<section>
-									<md-subheader class="md-primary">This month:</md-subheader>
-									<md-list>
-										<md-item>
-											<md-item-content>
-												<div class="md-tile-content">
-													<h3>&euro; 10,50</h3>
-													<h4>Title of item</h4>
-													<p>date of item</p>
-												</div>
-											</md-item-content>
-											<md-divider ng-if="!$last"></md-divider>
-										</md-item>
-										<md-item>
-											<md-item-content>
-												<div class="md-tile-content">
-													<h3>&euro; 10,50</h3>
-													<h4>Title of item</h4>
-													<p>date of item</p>
-												</div>
-											</md-item-content>
-											<md-divider ng-if="!$last"></md-divider>
-										</md-item>
-										<md-item>
-											<md-item-content>
-												<div class="md-tile-content">
-													<h3>&euro; 10,50</h3>
-													<h4>Title of item</h4>
-													<p>date of item</p>
-												</div>
-											</md-item-content>
-											<md-divider ng-if="!$last"></md-divider>
-										</md-item>
-									</md-list>
-								</section>
-							</md-content>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div ui-view="contentView"></div>
 
 		<script src="vendor/angular.min.js"></script>
 		<script src="vendor/angular-animate.min.js"></script>
 		<script src="vendor/angular-aria.min.js"></script>
-
 		<script src="vendor/angular-material.min.js"></script>
+		<script src="vendor/angular-ui-router.min.js"></script>
 
 		<script src="index.js"></script>
+		<script src="templates.js"></script>
+		<script src="components/app/app.js"></script>
 		<script src="components/newEntry/newEntry.js"></script>
 
 	</body>

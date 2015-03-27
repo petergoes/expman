@@ -9,10 +9,11 @@ module.exports = function(grunt) {
 
 					{expand: true, cwd: 'src/', src: ['**/*.js'], dest: 'dev/'},
 
-					{expand: true, cwd: 'bower_components/angularjs/',			src: ['angular.min.js', 'angular.min.js.map'], dest: 'dev/vendor'},
-					{expand: true, cwd: 'bower_components/angular-animate', 	src: ['angular-animate.min.js', 'angular-animate.min.js.map'], dest: 'dev/vendor'},
-					{expand: true, cwd: 'bower_components/angular-aria',		src: ['angular-aria.min.js', 'angular-aria.min.js.map'], dest: 'dev/vendor'},
-					{expand: true, cwd: 'bower_components/angular-material',	src: ['angular-material.min.js', 'angular-material.min.css'], dest: 'dev/vendor'}
+					{expand: true, cwd: 'bower_components/angularjs/',					src: ['angular.min.js', 'angular.min.js.map'], dest: 'dev/vendor'},
+					{expand: true, cwd: 'bower_components/angular-animate',		 		src: ['angular-animate.min.js', 'angular-animate.min.js.map'], dest: 'dev/vendor'},
+					{expand: true, cwd: 'bower_components/angular-aria',				src: ['angular-aria.min.js', 'angular-aria.min.js.map'], dest: 'dev/vendor'},
+					{expand: true, cwd: 'bower_components/angular-material',			src: ['angular-material.min.js', 'angular-material.min.css'], dest: 'dev/vendor'},
+					{expand: true, cwd: 'bower_components/angular-ui-router/release',	src: ['angular-ui-router.min.js'], dest: 'dev/vendor'}
 				]
 			}
 		},
@@ -25,6 +26,15 @@ module.exports = function(grunt) {
 				},
 				files: {
 					'dev/styles.css': 'src/index.less'
+				}
+			}
+		},
+		ngtemplates: {
+			app:          {
+				src:        'src/components/**/*.html',
+				dest:       'dev/templates.js',
+				options:    {
+					htmlmin:  { collapseWhitespace: true, collapseBooleanAttributes: true }
 				}
 			}
 		},
@@ -43,11 +53,12 @@ module.exports = function(grunt) {
 			}
 		}
 	});
-
+	
+	grunt.loadNpmTasks('grunt-angular-templates');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-notify');
 
-	grunt.registerTask('dev', ['copy:dev', 'less:dev']);
+	grunt.registerTask('dev', ['copy:dev', 'less:dev', 'ngtemplates']);
 };

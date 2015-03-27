@@ -1,13 +1,24 @@
-angular.module('app', ['ngMaterial']);
+(function() {
+	'use strict';
 
-angular.module('app')
-	.controller('App', ['$scope', '$mdSidenav', App]);
+	angular.module('app', ['ui.router', 'ngMaterial'])
+	.config(config);
 
-
-function App($scope, $mdSidenav) {
-	$scope.toggleSidenav = function(menuId) {
-		var viewModel = this;
-
-		$mdSidenav(menuId).toggle();
-	};
-}
+	function config($stateProvider, $urlRouterProvider) {
+		$urlRouterProvider.otherwise('/home');
+		$stateProvider
+			.state('home', {
+				url: '/home',
+				views: {
+					'contentView': {
+						templateProvider: function($templateCache) {
+							console.log('blub');
+							return $templateCache.get('src/components/app/app.html');
+						},
+						controller: 'AppController',
+						controllerAs: 'app'
+					}
+				}
+			});
+	}
+})();

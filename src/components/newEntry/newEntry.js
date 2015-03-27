@@ -1,27 +1,30 @@
 (function() {
-    'use strict';
+	'use strict';
 
 	angular
 		.module('app')
 		.controller('NewEntry', NewEntry);
 
-	NewEntry.$inject = ['$scope'];
-
+	/* @ngInject */
 	function NewEntry($scope) {
-		// view model
 		var vm = this;
-
+		vm.title = 'NewEntry';
 		vm.amount = null;
 		vm.description = '';
 		vm.tags = [
-			{name: "Food", used: 2, checked: false},
-			{name: "Home", used: 1, checked: false},
-			{name: "Other", used: 1, checked: false},
-			{name: "Sports", used: 5, checked: false}
-		];
+			{name: 'Food', used: 2, checked: false},
+			{name: 'Home', used: 1, checked: false},
+			{name: 'Other', used: 1, checked: false},
+			{name: 'Sports', used: 5, checked: false}];
 		vm.toggleMoreTags = false;
 		vm.toggleTags = toggleTags;
 
+		init();
+
+		////////////////
+
+		function init() {
+		}
 
 		function toggleTags() {
 			vm.toggleMoreTags = !vm.toggleMoreTags;
