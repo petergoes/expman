@@ -3,7 +3,7 @@
 
 	angular
 		.module('app')
-		.controller('NewEntry', NewEntry);
+		.controller('NewEntryController', NewEntry);
 
 	/* @ngInject */
 	function NewEntry($scope) {
