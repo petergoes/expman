@@ -12,7 +12,6 @@
 				views: {
 					'contentView': {
 						templateProvider: function($templateCache) {
-							console.log('blub');
 							return $templateCache.get('src/components/app/app.html');
 						},
 						controller: 'AppController',

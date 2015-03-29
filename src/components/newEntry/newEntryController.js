@@ -22,6 +22,8 @@
 
 		init();
 
+		$scope.$on('primary-fab-clicked', primaryFabClicked);
+
 		$scope.$watch('newEntry.amount', amountChanged);
 		$scope.$watch('newEntry.canSubmit', canSubmitChanged);
 
@@ -44,6 +46,27 @@
 		}
 
 		function init() {
+		}
+
+		function primaryFabClicked() {
+			console.log('build new entry');
+			var newEntryObj = {};
+			newEntryObj.amount = vm.amount;
+			newEntryObj.date = Date.now();
+			newEntryObj.description = vm.description;
+			newEntryObj.tags = _.filter(vm.tags, filter);
+
+			_.each(newEntryObj.tags, stripHashKey);
+
+			console.log(newEntryObj);
+
+			function filter(tag) {
+				return tag.checked;
+			}
+
+			function stripHashKey(tag) {
+				delete tag.$$hashKey;
+			}
 		}
 
 		function toggleTags() {

@@ -25,12 +25,10 @@
 		}
 
 		function activate() {
-			console.log('activate');
 			vm.disabled = false;
 		}
 
 		function deactivate() {
-			console.log('deactivate');
 			vm.disabled = true;
 		}
 
