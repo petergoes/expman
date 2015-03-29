@@ -1,0 +1,19 @@
+<div layout="row" flex>
+	<md-content layout="column" flex>
+		<section>
+			<md-subheader class="md-primary">This month:</md-subheader>
+			<md-list>
+				<md-item ng-repeat="entry in el.entries">
+					<md-item-content>
+						<div class="md-tile-content">
+							<h3>&euro; {{entry.amount}}</h3>
+							<h4>{{entry.description}}</h4>
+							<p>{{entry.date}}</p>
+						</div>
+					</md-item-content>
+					<md-divider ng-if="!$last"></md-divider>
+				</md-item>
+			</md-list>
+		</section>
+	</md-content>
+</div>
