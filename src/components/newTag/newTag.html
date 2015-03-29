@@ -1,0 +1,18 @@
+<md-dialog aria-label="New Tag">
+	<md-content class="sticky-container">
+		<div class="dialog-content">
+			<md-input-container>
+				<label>New Tag</label>
+				<input ng-model="nt.tag">
+			</md-input-container>
+		</div>
+	</md-content>
+	<div class="md-actions" layout="row">
+		<md-button class="md-primary" ng-click="nt.cancel()">
+			Cancel
+		</md-button>
+		<md-button ng-click="nt.add()">
+			Add
+		</md-button>
+	</div>
+</md-dialog>

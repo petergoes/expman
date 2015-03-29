@@ -6,16 +6,13 @@
 		.controller('NewEntryController', NewEntry);
 
 	/* @ngInject */
-	function NewEntry($scope, $rootScope) {
+	function NewEntry($scope, $rootScope, Tags) {
 		var vm = this;
 		vm.amount = null;
 		vm.canSubmit = false;
 		vm.description = '';
-		vm.tags = [
-			{name: 'Food', used: 2, checked: false},
-			{name: 'Home', used: 1, checked: false},
-			{name: 'Other', used: 1, checked: false},
-			{name: 'Sports', used: 5, checked: false}];
+		vm.newTag = newTag;
+		vm.tags = Tags.getTags();
 		vm.title = 'NewEntry';
 		vm.toggleMoreTags = false;
 		vm.toggleTags = toggleTags;
@@ -46,6 +43,10 @@
 		}
 
 		function init() {
+		}
+
+		function newTag() {
+			Tags.createTag();
 		}
 
 		function primaryFabClicked() {

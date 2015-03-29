@@ -26,9 +26,16 @@
 					>
 						{{tag.name}}
 					</md-checkbox>
-					<md-button ng-click="newEntry.toggleTags()" flex="100">
-						{{newEntry.toggleMoreTags? 'Less' : 'More' }}
-					</md-button>
+
+					<div layout="row" flex="100">
+						<md-button ng-click="newEntry.toggleTags()" flex="66">
+							{{newEntry.toggleMoreTags? 'Less' : 'More' }}
+						</md-button>
+
+						<md-button ng-click="newEntry.newTag()" flex="33">
+							New Tag
+						</md-button>
+					</div>
 				</section>
 			</md-card-content>
 		</md-card>
