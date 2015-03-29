@@ -6,7 +6,7 @@
 		.controller('NewEntryController', NewEntry);
 
 	/* @ngInject */
-	function NewEntry($scope, $rootScope, Tags) {
+	function NewEntry($scope, $rootScope, Entry, Tags) {
 		var vm = this;
 		vm.amount = null;
 		vm.canSubmit = false;
@@ -50,33 +50,12 @@
 		}
 
 		function primaryFabClicked() {
-			var newEntryObj = {};
-			newEntryObj.amount = vm.amount;
-			newEntryObj.date = Date.now();
-			newEntryObj.description = vm.description;
-			newEntryObj.tags = _.filter(vm.tags, filter);
-
-			_.each(newEntryObj.tags, stripHashKey);
-			_.each(newEntryObj.tags, stripUsed);
-			_.each(newEntryObj.tags, updateTag);
+			Entry.createNew(vm.amount, vm.description, _.filter(vm.tags, filter));
 
 			resetValues();
-			console.log(newEntryObj);
 
 			function filter(tag) {
 				return tag.checked;
-			}
-
-			function updateTag(tag) {
-				Tags.useTag(tag.id);
-			}
-
-			function stripHashKey(tag) {
-				delete tag.$$hashKey;
-			}
-
-			function stripUsed(tag) {
-				delete tag.checked;
 			}
 		}
 
