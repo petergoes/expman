@@ -11,7 +11,8 @@
 
 		var service = {
 			createTag: createTag,
-			getTags: getTags
+			getTags: getTags,
+			useTag: useTag
 		};
 		return service;
 
@@ -28,12 +29,13 @@
 			function handler(name) {
 				if (name) {
 					var obj = {
+						id: Date.now(),
 						name: name,
 						used: 0,
 					};
 
 					tags.push(obj);
-					localStorage.setItem('tags', JSON.stringify(tags));
+					saveTags();
 				}
 			}
 		}
@@ -48,6 +50,27 @@
 
 		function getTags() {
 			return tags;
+		}
+
+		function saveTags() {
+
+			_.each(tags, stripHashKey);
+			localStorage.setItem('tags', JSON.stringify(tags));
+
+			function stripHashKey(tag) {
+				delete tag.$$hashKey;
+			}
+		}
+
+		function useTag(id) {
+			var tag = _.find(tags, find);
+			tag.used = tag.used + 1;
+
+			saveTags();
+
+			function find(tag) {
+				return (tag.id === id);
+			}
 		}
 	}
 })();

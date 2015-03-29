@@ -50,7 +50,6 @@
 		}
 
 		function primaryFabClicked() {
-			console.log('build new entry');
 			var newEntryObj = {};
 			newEntryObj.amount = vm.amount;
 			newEntryObj.date = Date.now();
@@ -58,16 +57,33 @@
 			newEntryObj.tags = _.filter(vm.tags, filter);
 
 			_.each(newEntryObj.tags, stripHashKey);
+			_.each(newEntryObj.tags, stripUsed);
+			_.each(newEntryObj.tags, updateTag);
 
+			resetValues();
 			console.log(newEntryObj);
 
 			function filter(tag) {
 				return tag.checked;
 			}
 
+			function updateTag(tag) {
+				Tags.useTag(tag.id);
+			}
+
 			function stripHashKey(tag) {
 				delete tag.$$hashKey;
 			}
+
+			function stripUsed(tag) {
+				delete tag.checked;
+			}
+		}
+
+		function resetValues() {
+			vm.amount = null;
+			vm.description = '',
+			vm.tags = Tags.getTags();
 		}
 
 		function toggleTags() {
