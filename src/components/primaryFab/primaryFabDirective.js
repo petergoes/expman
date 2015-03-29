@@ -3,10 +3,10 @@
 
 	angular
 		.module('app')
-		.directive('epNewEntry', NewEntry);
+		.directive('epPrimaryFab', epPrimaryFab);
 
 	/* @ngInject */
-	function NewEntry ($templateCache) {
+	function epPrimaryFab ($templateCache) {
 		// Usage:
 		//
 		// Creates:
@@ -14,8 +14,8 @@
 		var directive = {
 			bindToController: true,
 			template: template,
-			controller: 'NewEntryController',
-			controllerAs: 'newEntry',
+			controller: 'PrimaryFabController',
+			controllerAs: 'primaryFab',
 			link: link,
 			restrict: 'EA',
 			scope: {
@@ -27,7 +27,7 @@
 		}
 
 		function template() {
-			return $templateCache.get('src/components/newEntry/newEntry.html');
+			return $templateCache.get('src/components/primaryFab/primaryFab.html');
 		}
 	}
 })();

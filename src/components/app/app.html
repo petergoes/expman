@@ -1,10 +1,5 @@
 <div id="app">
-	<div id="primary-fab">
-		<div class="fab-container">
-			<md-button class="md-fab md-primary md-hue-2" ng-disabled="true" aria-label="Primary FAB">
-			</md-button>
-		</div>
-	</div>
+	<ep-primary-fab></ep-primary-fab>
 
 	<div layout="column">
 		<md-toolbar id="header" layout="row">
@@ -13,6 +8,7 @@
 			</button>
 			<h1>ExpMan</h1>
 		</md-toolbar>
+
 		<div id="page" layout="row" flex>
 			<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
 				<md-toolbar class="md-tall">
@@ -67,11 +63,12 @@
 				</md-content>
 			</md-sidenav>
 			
-			<div layout="column" flex id="content">
+			<div id="content" layout="column" flex>
 				
-				<new-entry></new-entry>
+				<ep-new-entry></ep-new-entry>
 
 				<md-divider></md-divider>
+
 				<div layout="row" flex>
 					<md-content layout="column" flex>
 						<section>
