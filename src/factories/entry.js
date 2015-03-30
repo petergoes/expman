@@ -7,9 +7,11 @@
 
 	/* @ngInject */
 	function Entry(Tags) {
+		var entriesThisMonth = getEntriesFromLocalStorage();
+
 		var service = {
 			createNew: createNew,
-			getEntries: getEntries
+			getEntries: entriesThisMonth
 		};
 		return service;
 
@@ -17,6 +19,7 @@
 
 		function createNew(amount, description, tags) {
 			var obj = {
+				id: Date.now(),
 				amount: amount,
 				description: description,
 				tags: [],
@@ -37,17 +40,23 @@
 			}
 		}
 
-		function getEntries() {
+		function getEntriesFromLocalStorage() {
 			var date = moment().format('YYYYMM');
-			return JSON.parse(localStorage.getItem('entries' + date)) || [];
+			var entries = JSON.parse(localStorage.getItem('entries' + date)) || [];
+
+			_.each(entries, addMomentdate);
+
+			return entries;
+
+			function addMomentdate(entry) {
+				entry.momentDate = moment(entry.date).fromNow();
+			}
 		}
 
 		function saveEntry(entry) {
 			var date = moment().format('YYYYMM');
-			var entriesThisMonth = JSON.parse(localStorage.getItem('entries' + date)) || [];
-
 			entriesThisMonth.push(entry);
-			localStorage.setItem('entries' + date, JSON.stringify(entriesThisMonth));
+			localStorage.setItem('entries' + date, angular.toJson(entriesThisMonth));
 		}
 	}
 })();

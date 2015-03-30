@@ -11,6 +11,7 @@
 
 		var service = {
 			createTag: createTag,
+			getTag: getTag,
 			getTags: getTags,
 			useTag: useTag
 		};
@@ -48,23 +49,27 @@
 			return JSON.parse(tags);
 		}
 
+		function getTag(id) {
+			return _.find(tags, find);
+
+			function find(tag) {
+				return (tag.id === id);
+			}
+		}
+
 		function getTags() {
 			return tags;
 		}
 
 		function saveTags() {
 
-			_.each(tags, stripHashKey);
-			localStorage.setItem('tags', JSON.stringify(tags));
-
-			function stripHashKey(tag) {
-				delete tag.$$hashKey;
-			}
+			localStorage.setItem('tags', angular.toJson(tags));
 		}
 
 		function useTag(id) {
 			var tag = _.find(tags, find);
 			tag.used = tag.used + 1;
+			delete tag.checked;
 
 			saveTags();
 
