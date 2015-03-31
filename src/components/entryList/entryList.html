@@ -9,8 +9,8 @@
 							<h3>&euro; {{entry.amount}}</h3>
 							<h4>{{entry.description}}</h4>
 							<p>{{entry.momentDate}}</p>
-							<small ng-repeat="tag in entry.tagNames track by $index">
-								{{tag}}<span ng-if="!$last">,&nbsp;</span>
+							<small ng-repeat="tag in entry.tags track by $index">
+								{{tag | tagname}}<span ng-if="!$last">,&nbsp;</span>
 							</small>
 						</div>
 					</md-item-content>
