@@ -28,7 +28,7 @@
 					</md-checkbox>
 
 					<div layout="row" flex="100">
-						<md-button ng-click="newEntry.toggleTags()" flex="66">
+						<md-button ng-click="newEntry.toggleTags()" ng-show="newEntry.tags.length > 3" flex="66">
 							{{newEntry.toggleMoreTags? 'Less' : 'More' }}
 						</md-button>
 
