@@ -6,9 +6,9 @@
 		.controller('AppController', AppController);
 
 	/* @ngInject */
-	function AppController($scope, $mdSidenav) {
+	function AppController($scope, $mdSidenav, $state) {
 		var vm = this;
-		vm.title = 'AppController';
+		vm.title = $state.current.data.title;
 		vm.toggleSidenav = toggleSidenav;
 
 		init();

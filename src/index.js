@@ -17,6 +17,9 @@
 						controller: 'AppController',
 						controllerAs: 'app'
 					}
+				},
+				data: {
+					title: 'ExpMan'
 				}
 			});
 	}
