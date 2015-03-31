@@ -2,9 +2,10 @@
 	'use strict';
 
 	angular.module('app', ['ui.router', 'ngMaterial'])
-	.config(config);
+	.config(states)
+	.config(themes);
 
-	function config($stateProvider, $urlRouterProvider) {
+	function states($stateProvider, $urlRouterProvider) {
 		$urlRouterProvider.otherwise('/home');
 		$stateProvider
 			.state('home', {
@@ -22,5 +23,14 @@
 					title: 'ExpMan'
 				}
 			});
+	}
+
+	function themes($mdThemingProvider) {
+		$mdThemingProvider
+			.theme('default')
+				.primaryPalette('indigo')
+				.accentPalette('pink')
+				.warnPalette('red')
+				.backgroundPalette('grey');
 	}
 })();
