@@ -11,8 +11,62 @@
 		<link rel="stylesheet" type="text/css" href="vendor/angular-material.min.css">
 		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
-	<body>
-		<div ui-view="contentView"></div>
+	<body layout="row">
+		<ep-primary-fab></ep-primary-fab>
+		<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" >
+			<md-toolbar class="md-tall">
+				<span flex></span>
+				<h2 class="md-toolbar-tools md-toolbar-tools-bottom">
+					<span class="md-flex">Menu</span>
+				</h2>
+			</md-toolbar>
+			<md-content>
+				<md-list>
+					<md-item>
+						<md-item-content>
+							<div class="md-tile-content">
+								<md-button class="md-primary">
+									Home
+								</md-button>
+							</div>
+						</md-item-content>
+						<md-divider ng-if="!$last"></md-divider>
+					</md-item>
+					<md-item>
+						<md-item-content>
+							<div class="md-tile-content">
+								<md-button class="md-primary">
+									This month
+								</md-button>
+							</div>
+						</md-item-content>
+						<md-divider ng-if="!$last"></md-divider>
+					</md-item>
+					<md-item>
+						<md-item-content>
+							<div class="md-tile-content">
+								<md-button class="md-primary">
+									Last month
+								</md-button>
+							</div>
+						</md-item-content>
+						<md-divider ng-if="!$last"></md-divider>
+					</md-item>
+					<md-item>
+						<md-item-content>
+							<div class="md-tile-content">
+								<md-button class="md-primary">
+									Average
+								</md-button>
+							</div>
+						</md-item-content>
+						<md-divider ng-if="!$last"></md-divider>
+					</md-item>
+				</md-list>
+			</md-content>
+		</md-sidenav>
+
+		<div ui-view="contentView" layout="column" flex></div>
 
 		<script src="vendor/angular.min.js"></script>
 		<script src="vendor/angular-animate.min.js"></script>
