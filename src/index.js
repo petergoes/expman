@@ -8,19 +8,36 @@
 	function states($stateProvider, $urlRouterProvider) {
 		$urlRouterProvider.otherwise('/home');
 		$stateProvider
+
 			.state('home', {
 				url: '/home',
 				views: {
 					'contentView': {
 						templateProvider: function($templateCache) {
-							return $templateCache.get('src/components/app/app.html');
+							return $templateCache.get('src/pages/home/home.html');
 						},
-						controller: 'AppController',
-						controllerAs: 'app'
+						controller: 'HomeController',
+						controllerAs: 'home'
 					}
 				},
 				data: {
 					title: 'ExpMan'
+				}
+			})
+
+			.state('thismonth', {
+				url: '/thismonth',
+				views: {
+					'contentView': {
+						templateProvider: function($templateCache) {
+							return $templateCache.get('src/pages/thisMonth/thisMonth.html');
+						},
+						controller: 'ThisMonthController',
+						controllerAs: 'tmc'
+					}
+				},
+				data: {
+					title: 'This Month'
 				}
 			});
 	}

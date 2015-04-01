@@ -1,4 +1,4 @@
-<div id="app">
+<div id="app" layout="row" flex>
 	<md-toolbar id="header" >
 			<button ng-click="app.toggleSidenav('left')" class="menuBtn">
 				<span class="visually-hidden">Menu</span>
@@ -7,14 +7,8 @@
 	</md-toolbar>
 
 	<md-content id="pagecontent" md-scroll-y flex class="md-padding md-default-theme">
-		<md-whiteframe class="md-whiteframe-z2" layout="row">
-			<div flex layout="column">
-				<ep-new-entry></ep-new-entry>
-
-				<md-divider></md-divider>
-
-				<ep-entry-list></ep-entry-list>
-			</div>
+		<md-whiteframe class="md-whiteframe-z2" layout="column">
+			<div ui-view="contentView" ></div>
 		</md-whiteframe>
 	</md-content>
 </div>
