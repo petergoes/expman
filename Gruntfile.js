@@ -13,6 +13,8 @@ module.exports = function(grunt) {
 					{expand: true, cwd: 'src/', src: ['**/*.js'], dest: 'dev/'},
 					{expand: true, cwd: 'src/', src: ['**/*.json'], dest: 'dev/'},
 
+					{expand: true, cwd: 'src/', src: ['**/*.png'], dest: 'dev/'},
+
 					{expand: true, cwd: 'bower_components/angularjs/',					src: ['angular.min.js', 'angular.min.js.map'], dest: 'dev/vendor'},
 					{expand: true, cwd: 'bower_components/angular-animate',		 		src: ['angular-animate.min.js', 'angular-animate.min.js.map'], dest: 'dev/vendor'},
 					{expand: true, cwd: 'bower_components/angular-aria',				src: ['angular-aria.min.js', 'angular-aria.min.js.map'], dest: 'dev/vendor'},
@@ -63,6 +65,7 @@ module.exports = function(grunt) {
 					'**/*.js.map',
 					'**/*.json',
 					'**/*.css',
+					'**/*.png'
 				],
 				dest: 'dist/manifest.appcache'
 			}
