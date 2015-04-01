@@ -16,59 +16,8 @@
 	</head>
 	<body layout="row">
 		<ep-primary-fab></ep-primary-fab>
-		
-		<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" >
-			<md-toolbar class="md-tall">
-				<span flex></span>
-				<h2 class="md-toolbar-tools md-toolbar-tools-bottom">
-					<span class="md-flex">Menu</span>
-				</h2>
-			</md-toolbar>
-			<md-content>
-				<md-list>
-					<md-item>
-						<md-item-content>
-							<div class="md-tile-content">
-								<md-button class="md-primary">
-									Home
-								</md-button>
-							</div>
-						</md-item-content>
-						<md-divider ng-if="!$last"></md-divider>
-					</md-item>
-					<md-item>
-						<md-item-content>
-							<div class="md-tile-content">
-								<md-button class="md-primary">
-									This month
-								</md-button>
-							</div>
-						</md-item-content>
-						<md-divider ng-if="!$last"></md-divider>
-					</md-item>
-					<md-item>
-						<md-item-content>
-							<div class="md-tile-content">
-								<md-button class="md-primary">
-									Last month
-								</md-button>
-							</div>
-						</md-item-content>
-						<md-divider ng-if="!$last"></md-divider>
-					</md-item>
-					<md-item>
-						<md-item-content>
-							<div class="md-tile-content">
-								<md-button class="md-primary">
-									Average
-								</md-button>
-							</div>
-						</md-item-content>
-						<md-divider ng-if="!$last"></md-divider>
-					</md-item>
-				</md-list>
-			</md-content>
-		</md-sidenav>
+
+		<ep-sidenav></ep-sidenav>
 
 		<ep-app></ep-app>
 
@@ -92,6 +41,8 @@
 		<script src="components/newEntry/newEntryDirective.js"></script>
 		<script src="components/primaryFab/primaryFabController.js"></script>
 		<script src="components/primaryFab/primaryFabDirective.js"></script>
+		<script src="components/sidenav/sidenavController.js"></script>
+		<script src="components/sidenav/sidenavDirective.js"></script>
 		<script src="factories/entry.js"></script>
 		<script src="factories/tags.js"></script>
 		<script src="filters/tagname.js"></script>

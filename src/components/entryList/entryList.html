@@ -1,7 +1,14 @@
 <div layout="row" flex>
 	<md-content layout="column" flex>
 		<section>
-			<md-subheader class="md-primary">This month (&euro;{{el.total()}} - {{el.entries.length}} entries):</md-subheader>
+			<md-toolbar ng-show="el.header">
+				<h1 class="md-toolbar-tools md-toolbar-tools-bottom">&euro;{{el.total()}} - {{el.entries.length}} entries</h1>
+			</md-toolbar>
+			
+			<md-subheader ng-show="el.subheader" class="md-primary">
+				This month (&euro;{{el.total()}} - {{el.entries.length}} entries):
+			</md-subheader>
+			
 			<md-list>
 				<md-item ng-repeat="entry in el.entries | orderBy: '-date' track by $index">
 					<md-item-content>

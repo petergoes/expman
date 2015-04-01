@@ -6,11 +6,13 @@
 		.controller('EntryListController', EntryListController);
 
 	/* @ngInject */
-	function EntryListController(Entry, Tags) {
+	function EntryListController($scope, Entry, Tags) {
 
 		var vm = this;
 		vm.entries = Entry.getEntries;
 		vm.total = total;
+		vm.showHeader = false;
+		vm.showSubheader = false;
 		vm.title = 'EntryListController';
 
 		init();
@@ -28,6 +30,8 @@
 		}
 
 		function init() {
+			vm.showHeader = $scope.header;
+			vm.showSubheader = $scope.subheader;
 		}
 	}
 })();

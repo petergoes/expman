@@ -6,7 +6,7 @@
 		.controller('AppController', AppController);
 
 	/* @ngInject */
-	function AppController($scope, $rootScope, $mdSidenav, $state) {
+	function AppController($scope, $rootScope, $state) {
 		var vm = this;
 		vm.title = 'ExpMan';
 		vm.toggleSidenav = toggleSidenav;
@@ -21,11 +21,10 @@
 		}
 
 		function toggleSidenav(menuId) {
-			$mdSidenav(menuId).toggle();
+			$rootScope.$broadcast('toggle-sidenav', 'left');
 		}
 
 		function onStateChange(event, newScope) {
-			console.log(arguments);
 			vm.title = newScope.data.title;
 		}
 	}
