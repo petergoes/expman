@@ -2,12 +2,16 @@ module.exports = function(grunt) {
 	'use strict';
 
 	grunt.initConfig({
+		clean: {
+			dist: ['dist/*']
+		},
 		copy: {
 			dev: {
 				files: [
 					{expand: true, cwd: 'src/', src: ['index.html'], dest: 'dev/'},
 
 					{expand: true, cwd: 'src/', src: ['**/*.js'], dest: 'dev/'},
+					{expand: true, cwd: 'src/', src: ['**/*.json'], dest: 'dev/'},
 
 					{expand: true, cwd: 'bower_components/angularjs/',					src: ['angular.min.js', 'angular.min.js.map'], dest: 'dev/vendor'},
 					{expand: true, cwd: 'bower_components/angular-animate',		 		src: ['angular-animate.min.js', 'angular-animate.min.js.map'], dest: 'dev/vendor'},
@@ -16,6 +20,11 @@ module.exports = function(grunt) {
 					{expand: true, cwd: 'bower_components/angular-ui-router/release',	src: ['angular-ui-router.min.js'], dest: 'dev/vendor'},
 					{expand: true, cwd: 'bower_components/underscore',					src: ['underscore-min.js', 'underscore-min.map'], dest: 'dev/vendor'},
 					{expand: true, cwd: 'bower_components/moment/min',					src: ['moment.min.js'], dest: 'dev/vendor'}
+				]
+			},
+			dist: {
+				files: [
+					{expand: true, cwd: 'dev', src: ['**/*'], dest: 'dist'}
 				]
 			}
 		},
@@ -40,6 +49,24 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		manifest: {
+			dist: {
+				options: {
+					basePath: 'dist/',
+					process: function(path) {
+						console.log("path:", path);
+						return path.substring('dist/'.length);
+					}
+				},
+				src: [
+					'**/*.js',
+					'**/*.js.map',
+					'**/*.json',
+					'**/*.css',
+				],
+				dest: 'dist/manifest.appcache'
+			}
+		},
 		notify: {
 			dev: {
 				options: {
@@ -57,10 +84,13 @@ module.exports = function(grunt) {
 	});
 	
 	grunt.loadNpmTasks('grunt-angular-templates');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-manifest');
 	grunt.loadNpmTasks('grunt-notify');
 
 	grunt.registerTask('dev', ['copy:dev', 'less:dev', 'ngtemplates']);
+	grunt.registerTask('dist', ['dev', 'clean:dist', 'copy:dist', 'manifest:dist']);
 };
