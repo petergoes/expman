@@ -6,7 +6,7 @@
 		.controller('HomeController', HomeController);
 
 	/* @ngInject */
-	function HomeController() {
+	function HomeController($rootScope) {
 		var vm = this;
 		vm.title = 'HomeController';
 
@@ -15,6 +15,7 @@
 		////////////////
 
 		function init() {
+			$rootScope.$broadcast('primary-fab-deactivate');
 		}
 	}
 })();

@@ -6,16 +6,22 @@
 		.controller('TagsController', TagsController);
 
 	/* @ngInject */
-	function TagsController(Tags) {
+	function TagsController($scope, Tags) {
 		var vm = this;
 		vm.tags = Tags.getTags();
 		vm.title = 'TagsController';
 
 		init();
 
+		$scope.$on('primary-fab-clicked', onPrimaryFab);
+
 		////////////////
 
 		function init() {
+		}
+
+		function onPrimaryFab() {
+			Tags.createTag();
 		}
 	}
 })();

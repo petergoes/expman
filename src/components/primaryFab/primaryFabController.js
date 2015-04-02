@@ -9,12 +9,12 @@
 	function PrimaryFabController($scope, $rootScope) {
 		var vm = this;
 		vm.clicked = clicked;
-		vm.disabled = true;
+		vm.disabled = false;
 		vm.title = 'PrimaryFabController';
 
 		$scope.$on('primary-fab-activate', activate);
 		$scope.$on('primary-fab-deactivate', deactivate);
-		$scope.$on('$stateChangeSuccess', deactivate);
+		$rootScope.$on('$stateChangeSuccess', activate);
 
 		init();
 
