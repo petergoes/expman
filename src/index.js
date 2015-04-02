@@ -25,6 +25,22 @@
 				}
 			})
 
+			.state('tags', {
+				url: '/tags',
+				views: {
+					'contentView': {
+						templateProvider: function($templateCache) {
+							return $templateCache.get('src/pages/tags/tags.html');
+						},
+						controller: 'TagsController',
+						controllerAs: 'tags'
+					}
+				},
+				data: {
+					title: 'Tags'
+				}
+			})
+
 			.state('thismonth', {
 				url: '/thismonth',
 				views: {
