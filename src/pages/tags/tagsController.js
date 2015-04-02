@@ -6,8 +6,9 @@
 		.controller('TagsController', TagsController);
 
 	/* @ngInject */
-	function TagsController() {
+	function TagsController(Tags) {
 		var vm = this;
+		vm.tags = Tags.getTags();
 		vm.title = 'TagsController';
 
 		init();

@@ -1,3 +1,19 @@
 <div flex layout="column">
-	
+	<md-content layout="column" flex>
+		<md-list>
+				<md-item ng-repeat="tag in tags.tags track by $index">
+					<md-item-content>
+						<div class="md-tile-content" layout="row">
+							<div flex="66">
+								<h3>{{tag.name}} <small>({{tag.used}})</small></h3>
+							</div>
+							<div flex="33">
+								<md-button class="md-raised">Edit</md-button>
+							</div>
+						</div>
+					</md-item-content>
+					<md-divider ng-if="!$last"></md-divider>
+				</md-item>
+			</md-list>
+	</md-content>
 </div>
