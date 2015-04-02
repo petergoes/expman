@@ -11,9 +11,11 @@
 
 		var service = {
 			createTag: createTag,
+			endEditTag: endEditTag,
 			getTag: getTag,
 			getTags: getTags,
-			useTag: useTag
+			useTag: useTag,
+			startEditTag: startEditTag
 		};
 		return service;
 
@@ -41,6 +43,17 @@
 			}
 		}
 
+		function endEditTag(id) {
+			var tag = _.find(tags, find);
+			delete tag.edit;
+
+			saveTags();
+
+			function find(tag) {
+				return (tag.id === id);
+			}
+		}
+
 		function getTagsFromLocalStorage() {
 			var tags = localStorage.getItem('tags');
 			if (!tags) {
@@ -64,6 +77,16 @@
 		function saveTags() {
 
 			localStorage.setItem('tags', angular.toJson(tags));
+		}
+
+		function startEditTag(id) {
+			var tag = _.find(tags, find);
+			tag.edit = true;
+			return tag;
+
+			function find(tag) {
+				return (tag.id === id);
+			}
 		}
 
 		function useTag(id) {

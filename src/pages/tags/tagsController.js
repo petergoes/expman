@@ -8,6 +8,7 @@
 	/* @ngInject */
 	function TagsController($scope, Tags) {
 		var vm = this;
+		vm.editTag = editTag;
 		vm.tags = Tags.getTags();
 		vm.title = 'TagsController';
 
@@ -16,6 +17,14 @@
 		$scope.$on('primary-fab-clicked', onPrimaryFab);
 
 		////////////////
+
+		function editTag(tag) {
+			if (!tag.edit) {
+				Tags.startEditTag(tag.id);
+			} else {
+				Tags.endEditTag(tag.id);
+			}
+		}
 
 		function init() {
 		}

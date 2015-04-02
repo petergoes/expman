@@ -1,14 +1,21 @@
 <div flex layout="column">
 	<md-content layout="column" flex>
 		<md-list>
-				<md-item ng-repeat="tag in tags.tags track by $index">
+				<md-item ng-repeat="tag in tags.tags | orderBy: 'name' track by $index">
 					<md-item-content>
 						<div class="md-tile-content" layout="row">
 							<div flex="66">
-								<h3>{{tag.name}} <small>({{tag.used}})</small></h3>
+								<h3 ng-hide="tag.edit">{{tag.name}} <small>({{tag.used}})</small></h3>
+								<md-input-container ng-hide="!tag.edit">
+									<label>Title</label>
+									<input ng-model="tag.name">
+								</md-input-container>
 							</div>
 							<div flex="33">
-								<md-button class="md-raised">Edit</md-button>
+								<md-button class="md-raised" ng-click="tags.editTag(tag)">
+									<span ng-show="!tag.edit">Edit</span>
+									<span ng-show="	tag.edit">Done</span>
+								</md-button>
 							</div>
 						</div>
 					</md-item-content>

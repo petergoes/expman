@@ -61,7 +61,7 @@
 
 		function resetValues() {
 			vm.amount = null;
-			vm.description = '',
+			vm.description = '';
 			vm.tags = Tags.getTags();
 		}
 
