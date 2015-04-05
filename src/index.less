@@ -59,6 +59,13 @@ https://github.com/google/material-design-icons
 
 #header {
 	position: fixed;
+	z-index: 5;
+	height: 60px;
+	box-shadow: none;
+}
+#header-backdrop {
+	position: absolute;
+	left: 0;
 }
 
 #tags {
@@ -74,8 +81,13 @@ https://github.com/google/material-design-icons
 }
 
 #pagecontent {
-	padding-top: 72px; // 64 + 8 px
 	max-width: 864px;
 	margin: auto;
 	height: 100%;
+	z-index: 3;
+	background-color: transparent;
+
+	> md-whiteframe {
+		margin-top: 56px; // 64 - 8 px
+	}
 }
