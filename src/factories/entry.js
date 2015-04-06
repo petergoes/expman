@@ -6,7 +6,7 @@
 		.factory('Entry', Entry);
 
 	/* @ngInject */
-	function Entry(Tags) {
+	function Entry($mdDialog, $templateCache, Tags) {
 		var entriesThisMonth = getEntriesFromLocalStorage();
 
 		var service = {
@@ -43,6 +43,12 @@
 
 		function editEntry(id) {
 			var entry = getEntry(id);
+
+			$mdDialog.show({
+				controller: 'EditEntryController',
+				controllerAs: 'editEntry',
+				template: $templateCache.get('src/components/editEntry/editEntry.html')
+			});
 		}
 
 		function getEntry(id) {

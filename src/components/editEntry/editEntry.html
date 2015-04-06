@@ -1,0 +1,25 @@
+<md-dialog aria-label="Edit Entry">
+	<md-toolbar class="md-accent">
+		<h1 class="md-toolbar-tools">Edit Entry</h1>
+	</md-toolbar>
+	<md-content class="sticky-container">
+		<div class="dialog-content">
+			<md-input-container>
+				<label>Amount</label>
+				<input type="number" required placeholder="0,00" >
+			</md-input-container>
+			<md-input-container>
+				<label>Description</label>
+				<input type="text" placeholder="Description" >
+			</md-input-container>
+		</div>
+	</md-content>
+	<div class="md-actions" layout="row">
+		<md-button ng-click="editEntry.cancel()">
+			Cancel
+		</md-button>
+		<md-button class="md-primary" ng-click="editEntry.save()">
+			Save
+		</md-button>
+	</div>
+</md-dialog>
