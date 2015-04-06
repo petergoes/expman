@@ -19,6 +19,9 @@
 							<small ng-repeat="tag in entry.tags track by $index">
 								{{tag | tagname}}<span ng-if="!$last">,&nbsp;</span>
 							</small>
+							<md-button ng-click="el.edit(entry.id)">
+								Edit
+							</md-button>
 						</div>
 					</md-item-content>
 					<md-divider ng-if="!$last"></md-divider>

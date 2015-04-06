@@ -11,6 +11,7 @@
 
 		var service = {
 			createNew: createNew,
+			editEntry: editEntry,
 			getEntries: entriesThisMonth
 		};
 		return service;
@@ -37,6 +38,18 @@
 
 			function addTags(tag) {
 				obj.tags.push(tag.id);
+			}
+		}
+
+		function editEntry(id) {
+			var entry = getEntry(id);
+		}
+
+		function getEntry(id) {
+			return _.find(entriesThisMonth, find);
+
+			function find(entry) {
+				return (entry.id === id);
 			}
 		}
 

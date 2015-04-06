@@ -9,6 +9,7 @@
 	function EntryListController($scope, Entry, Tags) {
 
 		var vm = this;
+		vm.edit = Entry.editEntry;
 		vm.entries = Entry.getEntries;
 		vm.total = total;
 		vm.showHeader = false;
@@ -18,6 +19,10 @@
 		init();
 
 		////////////////
+
+		function edit(id) {
+			console.log('edit entry', id);
+		}
 
 		function total() {
 			var amount = 0;
