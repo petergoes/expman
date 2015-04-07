@@ -1,6 +1,6 @@
 {
   "name": "ExpMan",
-  "version": "0.0.1",
+  "version": "0.5.0",
   "description": "Expense Manager - Get insight in your spendings",
   "main": "index.js",
   "scripts": {
