@@ -1,26 +1,28 @@
 <div flex layout="column">
-	<md-content layout="column" flex>
-		<md-list>
-				<md-item ng-repeat="tag in tags.tags | orderBy: 'name' track by $index">
-					<md-item-content>
-						<div class="md-tile-content" layout="row">
-							<div flex="66">
-								<h3 ng-hide="tag.edit">{{tag.name}} <small>({{tag.used}})</small></h3>
-								<md-input-container ng-hide="!tag.edit">
-									<label>Title</label>
-									<input ng-model="tag.name">
-								</md-input-container>
+	<md-card>
+		<md-content layout="column" flex>
+			<md-list>
+					<md-item ng-repeat="tag in tags.tags | orderBy: 'name' track by $index">
+						<md-item-content>
+							<div class="md-tile-content" layout="row">
+								<div flex="66">
+									<h3 ng-hide="tag.edit">{{tag.name}} <small>({{tag.used}})</small></h3>
+									<md-input-container ng-hide="!tag.edit">
+										<label>Title</label>
+										<input ng-model="tag.name">
+									</md-input-container>
+								</div>
+								<div flex="33">
+									<md-button class="md-raised" ng-click="tags.editTag(tag)">
+										<span ng-show="!tag.edit">Edit</span>
+										<span ng-show="	tag.edit">Done</span>
+									</md-button>
+								</div>
 							</div>
-							<div flex="33">
-								<md-button class="md-raised" ng-click="tags.editTag(tag)">
-									<span ng-show="!tag.edit">Edit</span>
-									<span ng-show="	tag.edit">Done</span>
-								</md-button>
-							</div>
-						</div>
-					</md-item-content>
-					<md-divider ng-if="!$last"></md-divider>
-				</md-item>
-			</md-list>
-	</md-content>
+						</md-item-content>
+						<md-divider ng-if="!$last"></md-divider>
+					</md-item>
+				</md-list>
+		</md-content>
+	</md-card>
 </div>
