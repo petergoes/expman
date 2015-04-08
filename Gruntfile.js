@@ -54,11 +54,7 @@ module.exports = function(grunt) {
 		manifest: {
 			dist: {
 				options: {
-					basePath: 'dist/',
-					process: function(path) {
-						console.log("path:", path);
-						return path.substring('dist/'.length);
-					}
+					basePath: 'dist/'
 				},
 				src: [
 					'**/*.js',
