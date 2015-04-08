@@ -2,18 +2,18 @@
 	<md-content layout="column" flex>
 		<section>
 			<md-toolbar ng-show="el.header" class="md-accent">
-				<h1 class="md-toolbar-tools md-toolbar-tools-bottom">&euro;{{el.total()}} - {{el.entries.length}} entries</h1>
+				<h1 class="md-toolbar-tools md-toolbar-tools-bottom">{{el.total() | currency:"&euro;"}} - {{el.entries.length}} entries</h1>
 			</md-toolbar>
 			
 			<md-subheader ng-show="el.subheader" class="md-primary">
-				This month (&euro;{{el.total()}} - {{el.entries.length}} entries):
+				This month ({{el.total() | currency:"&euro;"}} - {{el.entries.length}} entries):
 			</md-subheader>
 			
 			<md-list>
 				<md-item ng-repeat="entry in el.entries | orderBy: '-date' track by $index">
 					<md-item-content>
 						<div class="md-tile-content">
-							<h3>&euro; {{entry.amount}}</h3>
+							<h3>{{entry.amount | currency:"&euro;"}}</h3>
 							<h4>{{entry.description}}</h4>
 							<p>{{entry.momentDate}}</p>
 							<small ng-repeat="tag in entry.tags track by $index">
