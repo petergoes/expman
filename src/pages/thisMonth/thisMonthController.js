@@ -6,9 +6,13 @@
 		.controller('ThisMonthController', ThisMonthController);
 
 	/* @ngInject */
-	function ThisMonthController() {
+	function ThisMonthController(Entry) {
+		var entries = Entry.getEntries;
+
 		var vm = this;
 		vm.title = 'ThisMonthController';
+		vm.total = Entry.getMonthTotal();
+		vm.totalEntries = entries.length;
 
 		init();
 

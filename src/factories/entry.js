@@ -12,7 +12,8 @@
 		var service = {
 			createNew: createNew,
 			editEntry: editEntry,
-			getEntries: entriesThisMonth
+			getEntries: entriesThisMonth,
+			getMonthTotal: getEntriesTotal
 		};
 		return service;
 
@@ -69,6 +70,16 @@
 
 			function addMomentdate(entry) {
 				entry.momentDate = moment(entry.date).fromNow();
+			}
+		}
+
+		function getEntriesTotal() {
+			var amount = 0;
+			_.each(entriesThisMonth, addToAmount);
+			return amount;
+
+			function addToAmount(entry) {
+				amount += entry.amount;
 			}
 		}
 

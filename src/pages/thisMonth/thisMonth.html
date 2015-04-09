@@ -1,9 +1,15 @@
 <div flex layout="column">
 	<md-card>
+		<md-content>
+			<h2 class="md-subhead" layout-margin>Total: {{ tmc.total | currency: '&euro;'}} ({{tmc.totalEntries}} entries)</h2>
+		</md-content>
+	</md-card>
+
+	<md-card>
 		<ep-tag-comparison></ep-tag-comparison>
 	</md-card>
 
 	<md-card>
-		<ep-entry-list header></ep-entry-list>
+		<ep-entry-list></ep-entry-list>
 	</md-card>
 </div>
