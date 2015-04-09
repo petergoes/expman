@@ -22,6 +22,7 @@
 			var entries = Entry.getEntries;
 			var usedTagIds = [];
 			var usedTagObjects = [];
+			var noTagTotal = 0;
 
 			// find used tags
 			_.each(entries, filterTagsFromEntries);
@@ -32,6 +33,10 @@
 
 			// sum amount per tag
 			_.each(usedTagObjects, sumAmount);
+
+			if (noTagTotal !== 0) {
+				usedTagObjects.push({name: 'No tags', total: noTagTotal});
+			}
 			vm.maxTotal = _.max(usedTagObjects, getTagAmount).total;
 
 			// set percentage of max
@@ -42,6 +47,10 @@
 			function filterTagsFromEntries(entry) {
 
 				usedTagIds = usedTagIds.concat(entry.tags);
+
+				if (entry.tags.length === 0) {
+					noTagTotal = entry.amount;
+				}
 			}
 
 			function getTagObject(id) {
@@ -55,7 +64,7 @@
 			}
 
 			function setPercentage(tagObj) {
-				//console.log('vm.maxAmount', vm.maxAmount);
+
 				tagObj.percentage = (tagObj.total / vm.maxTotal) * 100;
 			}
 
