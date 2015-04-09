@@ -34,7 +34,7 @@
 			// sum amount per tag
 			_.each(usedTagObjects, sumAmount);
 
-			if (noTagTotal !== 0) {
+			if (noTagTotal) {
 				usedTagObjects.push({name: 'No tags', total: noTagTotal});
 			}
 			vm.maxTotal = _.max(usedTagObjects, getTagAmount).total;
@@ -49,7 +49,7 @@
 				usedTagIds = usedTagIds.concat(entry.tags);
 
 				if (entry.tags.length === 0) {
-					noTagTotal = entry.amount;
+					noTagTotal += entry.amount;
 				}
 			}
 
