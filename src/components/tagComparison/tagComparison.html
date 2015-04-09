@@ -1,0 +1,8 @@
+<md-content>
+	<section layout="column" layout-margin>
+		<div ng-repeat="tag in tagcomparison.tags | orderBy:'-total' track by $index" flex layout="column">
+			<span flex="30">{{tag.name}} ({{tag.total | currency:'&euro;'}})</span>
+			<md-progress-linear md-mode="determinate" value="{{tag.percentage}}" flex="70"></md-progress-linear>
+		</div>
+	</section>
+</md-content>
