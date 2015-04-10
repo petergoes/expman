@@ -20,10 +20,6 @@
 
 		////////////////
 
-		function edit(id) {
-			console.log('edit entry', id);
-		}
-
 		function total() {
 			var amount = 0;
 			_.each(vm.entries, addToAmount);

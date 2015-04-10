@@ -6,7 +6,7 @@
 		.factory('Entry', Entry);
 
 	/* @ngInject */
-	function Entry($mdDialog, $templateCache, Tags) {
+	function Entry($rootScope, $mdDialog, $templateCache, Tags) {
 		var entriesThisMonth = getEntriesFromLocalStorage();
 
 		var service = {
@@ -43,13 +43,20 @@
 		}
 
 		function editEntry(id) {
-			var entry = getEntry(id);
+			var theEntry = getEntry(id);
 
 			$mdDialog.show({
 				controller: 'EditEntryController',
 				controllerAs: 'editEntry',
-				template: $templateCache.get('src/components/editEntry/editEntry.html')
-			});
+				template: $templateCache.get('src/components/editEntry/editEntry.html'),
+				locals: {
+					entry: theEntry
+				}
+			}).then(successEdit);
+
+			function successEdit(entry) {
+				updateEntrys();
+			}
 		}
 
 		function getEntry(id) {
@@ -83,10 +90,15 @@
 			}
 		}
 
-		function saveEntry(entry) {
+		function updateEntrys() {
 			var date = moment().format('YYYYMM');
-			entriesThisMonth.push(entry);
 			localStorage.setItem('entries' + date, angular.toJson(entriesThisMonth));
+			$rootScope.$broadcast('entries-updated');
+		}
+
+		function saveEntry(entry) {
+			entriesThisMonth.push(entry);
+			updateEntrys();
 		}
 	}
 })();

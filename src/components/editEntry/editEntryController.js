@@ -6,9 +6,12 @@
 		.controller('EditEntryController', EditEntryController);
 
 	/* @ngInject */
-	function EditEntryController($scope, $mdDialog) {
+	function EditEntryController($scope, $mdDialog, entry, Entry) {
+		var orgEntry = _.clone(entry);
+
 		var vm = this;
 		vm.cancel = cancel;
+		vm.entry = entry;
 		vm.save = save;
 		vm.title = 'EditEntryController';
 
@@ -17,14 +20,17 @@
 		////////////////
 
 		function cancel() {
-			$mdDialog.cancel();
+			_.forEach(orgEntry, function(n, key) {
+				entry[key] = n;
+			});
+			$mdDialog.cancel(orgEntry);
 		}
 
 		function init() {
 		}
 
 		function save() {
-			$mdDialog.hide();
+			$mdDialog.hide(vm.entry);
 		}
 	}
 })();

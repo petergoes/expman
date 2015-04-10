@@ -6,7 +6,7 @@
 		.controller('ThisMonthController', ThisMonthController);
 
 	/* @ngInject */
-	function ThisMonthController(Entry) {
+	function ThisMonthController($rootScope, Entry) {
 		var entries = Entry.getEntries;
 
 		var vm = this;
@@ -14,11 +14,17 @@
 		vm.total = Entry.getMonthTotal();
 		vm.totalEntries = entries.length;
 
+		$rootScope.$on('entries-updated', onEntriesUpdated);
+
 		init();
 
 		////////////////
 
 		function init() {
+		}
+
+		function onEntriesUpdated() {
+			vm.total = Entry.getMonthTotal();
 		}
 	}
 })();

@@ -1,16 +1,13 @@
 <md-dialog aria-label="Edit Entry">
-	<md-toolbar class="md-accent">
-		<h1 class="md-toolbar-tools">Edit Entry</h1>
-	</md-toolbar>
 	<md-content class="sticky-container">
 		<div class="dialog-content">
 			<md-input-container>
 				<label>Amount</label>
-				<input type="number" required placeholder="0,00" >
+				<input type="number" required placeholder="0,00" ng-model="editEntry.entry.amount">
 			</md-input-container>
 			<md-input-container>
 				<label>Description</label>
-				<input type="text" placeholder="Description" >
+				<input type="text" placeholder="Description" ng-model="editEntry.entry.description">
 			</md-input-container>
 		</div>
 	</md-content>
