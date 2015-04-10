@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 					{expand: true, cwd: 'bower_components/angular-aria',				src: ['angular-aria.min.js', 'angular-aria.min.js.map'], dest: 'dev/vendor'},
 					{expand: true, cwd: 'bower_components/angular-material',			src: ['angular-material.min.js', 'angular-material.min.css'], dest: 'dev/vendor'},
 					{expand: true, cwd: 'bower_components/angular-ui-router/release',	src: ['angular-ui-router.min.js'], dest: 'dev/vendor'},
-					{expand: true, cwd: 'bower_components/underscore',					src: ['underscore-min.js', 'underscore-min.map'], dest: 'dev/vendor'},
+					{expand: true, cwd: 'bower_components/lodash',						src: ['underscore-min.js', 'underscore-min.map'], dest: 'dev/vendor'},
 					{expand: true, cwd: 'bower_components/moment/min',					src: ['moment.min.js'], dest: 'dev/vendor'}
 				]
 			},
@@ -40,6 +40,33 @@ module.exports = function(grunt) {
 				files: {
 					'dev/styles.css': 'src/index.less'
 				}
+			}
+		},
+		lodash: {
+			build: {
+				// output location
+				dest: 'dev/vendor/lodash.build.js',
+				options: {
+					exports: ['global']
+				}
+			}
+		},
+		lodashAutobuild: {
+			// Multiple autobuild targets supported
+			app: {
+				// The path to your source file(s)
+				src: ['src/**/*.js'],
+				// Default options:
+				options: {
+					// Set to the configured lodash task options.include
+					lodashConfigPath: 'lodash.build.options.include',
+					// The name(s) of the lodash object(s)
+					lodashObjects: [ '_' ],
+					// Undefined lodashTargets or an empty targets
+					// array will run all lodash targets. Specify
+					// targets by name to run specific targets
+					lodashTargets: [ 'build' ]
+				}            
 			}
 		},
 		ngtemplates: {
@@ -77,7 +104,7 @@ module.exports = function(grunt) {
 		watch: {
 			js: {
 				files: ['src/**/*'],
-				tasks: ['dev', 'notify:dev']
+				tasks: ['copy:dev', 'less:dev', 'ngtemplates', 'notify:dev']
 			}
 		}
 	});
@@ -87,9 +114,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-lodash');
+	grunt.loadNpmTasks('grunt-lodash-autobuild');
 	grunt.loadNpmTasks('grunt-manifest');
 	grunt.loadNpmTasks('grunt-notify');
 
-	grunt.registerTask('dev', ['copy:dev', 'less:dev', 'ngtemplates']);
+	grunt.registerTask('dev', ['copy:dev', 'less:dev', 'ngtemplates', 'lodashAutobuild']);
 	grunt.registerTask('dist', ['dev', 'clean:dist', 'copy:dist', 'manifest:dist']);
 };
