@@ -50,10 +50,15 @@ https://github.com/google/material-design-icons
 
 	.fab-container {
 		position: absolute;
-		right: 0px;
+		left: 50%;
 		bottom: 0px;
 		pointer-events: auto;
-		margin: 16px;
+		transform: translate3d(-50%, 100%, 0);
+		transition: transform 0.25s ease;
+	}
+
+	.fab-container.active {
+		transform: translate3d(-50%, -50%, 0);
 	}
 
 	button {
