@@ -6,7 +6,7 @@
 		.controller('TagsController', TagsController);
 
 	/* @ngInject */
-	function TagsController($scope, Tags) {
+	function TagsController($scope, $rootScope, Tags) {
 		var vm = this;
 		vm.editTag = editTag;
 		vm.tags = Tags.getTags();
@@ -27,6 +27,7 @@
 		}
 
 		function init() {
+			$rootScope.$broadcast('primary-fab-activate');
 		}
 
 		function onPrimaryFab() {

@@ -9,7 +9,7 @@
 	function PrimaryFabController($scope, $rootScope) {
 		var vm = this;
 		vm.clicked = clicked;
-		vm.disabled = false;
+		vm.disabled = true;
 		vm.title = 'PrimaryFabController';
 
 		$scope.$on('primary-fab-activate', activate);
