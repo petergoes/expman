@@ -1,4 +1,4 @@
-<section id="tags" layout="row" layout-wrap>
+<section id="tags" layout="{{tagList.layout}}" layout-wrap>
 	<md-checkbox 
 		ng-repeat="tag in tagList.tags track by $index | orderBy:'-used'"
 		arial-label="tag.name"
@@ -10,11 +10,11 @@
 	</md-checkbox>
 
 	<div layout="row" flex="100">
-		<md-button ng-click="tagList.toggleTags()" ng-show="tagList.tags.length > 3" flex="66">
+		<md-button ng-click="tagList.toggleTags()" ng-show="tagList.tags.length > 3" flex="{'66':tagList.layout==='row'}">
 			{{tagList.toggleMoreTags? 'Less' : 'More' }}
 		</md-button>
 
-		<md-button ng-click="tagList.newTag()" flex="33">
+		<md-button ng-click="tagList.newTag()" flex="{'66':tagList.layout==='row'}" ng-show="tagList.newTagButton">
 			New Tag
 		</md-button>
 	</div>

@@ -75,8 +75,12 @@
 		}
 
 		function saveTags() {
-
+			_.each(tags, stripChecked);
 			localStorage.setItem('tags', angular.toJson(tags));
+
+			function stripChecked(tag) {
+				delete tag.checked;
+			}
 		}
 
 		function startEditTag(id) {

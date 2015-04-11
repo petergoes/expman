@@ -24,6 +24,8 @@
 		return directive;
 
 		function link(scope, element, attrs) {
+			scope.tagList.layout = attrs.listLayout || 'row';
+			scope.tagList.newTagButton = attrs.hasOwnProperty('newTagButton');
 		}
 
 		function template() {
