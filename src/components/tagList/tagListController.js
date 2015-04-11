@@ -6,7 +6,7 @@
 		.controller('TagListController', TagListController);
 
 	/* @ngInject */
-	function TagListController(Tags) {
+	function TagListController($scope, Tags) {
 		var vm = this;
 		vm.newTag = newTag;
 		vm.tags = Tags.getTags();
@@ -19,6 +19,7 @@
 		////////////////
 
 		function init() {
+			$scope.$parent.tags = vm.tags;
 		}
 
 		function newTag() {
