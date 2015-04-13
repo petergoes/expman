@@ -6,7 +6,7 @@
 		.controller('EntryListController', EntryListController);
 
 	/* @ngInject */
-	function EntryListController($scope, Entry, Tags) {
+	function EntryListController($scope, $rootScope, Entry, Tags) {
 
 		var vm = this;
 		vm.edit = Entry.editEntry;

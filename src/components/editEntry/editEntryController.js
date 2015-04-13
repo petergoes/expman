@@ -1,4 +1,4 @@
-(function() {
+(function(document) {
 	'use strict';
 
 	angular
@@ -12,6 +12,7 @@
 		var vm = this;
 		vm.cancel = cancel;
 		vm.entry = entry;
+		vm.remove = remove;
 		vm.save = save;
 		vm.title = 'EditEntryController';
 
@@ -44,6 +45,19 @@
 
 		}
 
+		function remove() {
+			stripTags();
+			var confirm = $mdDialog.confirm()
+				.title('Delete')
+				.content('Are you sure?')
+				.ok('Yes')
+				.cancel('No');
+			$mdDialog.show(confirm)
+				.then(function() {
+					Entry.deleteEntry(vm.entry.id);
+				});
+		}
+
 		function save() {
 			vm.entry.tags = [];
 			_.each($scope.tags, fillTags);
@@ -67,4 +81,4 @@
 			}
 		}
 	}
-})();
+})(document);

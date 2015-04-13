@@ -6,11 +6,12 @@
 		.factory('Entry', Entry);
 
 	/* @ngInject */
-	function Entry($rootScope, $mdDialog, $templateCache, Tags) {
+	function Entry($rootScope, $mdDialog, $templateCache, $window, Tags) {
 		var entriesThisMonth = getEntriesFromLocalStorage();
 
 		var service = {
 			createNew: createNew,
+			deleteEntry: deleteEntry,
 			editEntry: editEntry,
 			getEntries: entriesThisMonth,
 			getMonthTotal: getEntriesTotal
@@ -39,6 +40,20 @@
 
 			function addTags(tag) {
 				obj.tags.push(tag.id);
+			}
+		}
+
+		function deleteEntry(id) {
+			var theEntry = getEntry(id);
+
+			entriesThisMonth = _.filter(entriesThisMonth, deleteThisEntry);
+			updateEntrys();
+
+			function deleteThisEntry(entry) {
+				if (entry.id === theEntry.id) {
+					return false;
+				}
+				return true;
 			}
 		}
 
@@ -93,7 +108,8 @@
 		function updateEntrys() {
 			var date = moment().format('YYYYMM');
 			localStorage.setItem('entries' + date, angular.toJson(entriesThisMonth));
-			$rootScope.$broadcast('entries-updated');
+			entriesThisMonth = getEntriesFromLocalStorage();
+			$window.location.reload();
 		}
 
 		function saveEntry(entry) {

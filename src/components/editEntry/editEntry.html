@@ -11,6 +11,11 @@
 			</md-input-container>
 			<ep-tag-list list-layout="column"></ep-tag-list>
 		</div>
+		<div layout="row" layout-align="end center">
+			<md-button ng-click="editEntry.remove()" class="md-warn">
+				Delete
+			</md-button>
+		</div>
 	</md-content>
 	<div class="md-actions" layout="row">
 		<md-button ng-click="editEntry.cancel()">
