@@ -25,6 +25,22 @@
 				}
 			})
 
+			.state('settings', {
+				url: '/settings',
+				views: {
+					'contentView': {
+						templateProvider: function($templateCache) {
+							return $templateCache.get('src/pages/settings/settings.html');
+						},
+						controller: 'SettingsController',
+						controllerAs: 'settings'
+					}
+				},
+				data: {
+					title: 'Settings'
+				}
+			})
+
 			.state('tags', {
 				url: '/tags',
 				views: {
