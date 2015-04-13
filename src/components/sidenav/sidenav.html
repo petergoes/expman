@@ -15,7 +15,7 @@
 						</md-button>
 					</div>
 				</md-item-content>
-				<md-divider ng-if="!$last"></md-divider>
+				<md-divider></md-divider>
 			</md-item>
 			<md-item>
 				<md-item-content>
@@ -25,7 +25,7 @@
 						</md-button>
 					</div>
 				</md-item-content>
-				<md-divider ng-if="!$last"></md-divider>
+				<md-divider></md-divider>
 			</md-item>
 			<md-item>
 				<md-item-content>
@@ -35,7 +35,7 @@
 						</md-button>
 					</div>
 				</md-item-content>
-				<md-divider ng-if="!$last"></md-divider>
+				<md-divider></md-divider>
 			</md-item>
 			<md-item>
 				<md-item-content>
@@ -45,7 +45,7 @@
 						</md-button>
 					</div>
 				</md-item-content>
-				<md-divider ng-if="!$last"></md-divider>
+				<md-divider></md-divider>
 			</md-item>
 			<md-item>
 				<md-item-content>
@@ -55,7 +55,17 @@
 						</md-button>
 					</div>
 				</md-item-content>
-				<md-divider ng-if="!$last"></md-divider>
+				<md-divider></md-divider>
+			</md-item>
+			<md-item>
+				<md-item-content>
+					<div class="md-tile-content">
+						<md-button md-no-ink class="md-primary" ng-class="{'md-accent':sidenav.currentState === 'settings'}" ng-click="sidenav.navigateTo('settings')">
+							Settings
+						</md-button>
+					</div>
+				</md-item-content>
+				<md-divider></md-divider>
 			</md-item>
 		</md-list>
 	</md-content>
