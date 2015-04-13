@@ -42,10 +42,9 @@
 		}
 
 		function primaryFabClicked() {
-			
-			//Entry.createNew(vm.amount, vm.description, _.filter(vm.tags, filter));
+			Entry.createNew(vm.amount, vm.description, _.filter(Tags.getTags(), filter));
 
-			//resetValues();
+			resetValues();
 
 			function filter(tag) {
 				return tag.checked;

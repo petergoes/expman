@@ -45,7 +45,9 @@
 
 		function endEditTag(id) {
 			var tag = _.find(tags, find);
+			tag.name = (tag.tempName === '') ? tag.name + '' : tag.tempName + '';
 			delete tag.edit;
+			delete tag.tempName;
 
 			saveTags();
 
@@ -86,6 +88,7 @@
 		function startEditTag(id) {
 			var tag = _.find(tags, find);
 			tag.edit = true;
+			tag.tempName = tag.name + '';
 			return tag;
 
 			function find(tag) {
